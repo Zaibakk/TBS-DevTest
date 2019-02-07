@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Done_Boundary 
@@ -16,10 +17,35 @@ public class Done_PlayerController : MonoBehaviour
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float fireRate;
-	 
-	private float nextFire;
-	
-	void Update ()
+
+    public int lives;
+    public GameObject playerExplosion;
+
+    private float nextFire;
+    private Done_GameController gameController;
+    private Transform healthBar;
+    private int maxLives;
+
+    void Start()
+    {
+        GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<Done_GameController>();
+        }
+        if (gameController == null)
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
+        GameObject gameHealthBarObject = GameObject.FindGameObjectWithTag("Healthbar");
+        if (gameHealthBarObject != null)
+        {
+            healthBar = gameHealthBarObject.transform;
+        }
+        maxLives = lives;
+    }
+
+    void Update ()
 	{
 		if (Input.GetButton("Fire1") && Time.time > nextFire) 
 		{
@@ -46,4 +72,41 @@ public class Done_PlayerController : MonoBehaviour
 		
 		GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 	}
+
+    public void loseLife()
+    {
+        lives--;
+        updateHealthBar();
+        if (lives<=0)
+        {
+            Instantiate(playerExplosion, transform.position, transform.rotation);
+            gameController.GameOver();
+            Destroy(gameObject);
+        }
+    }
+
+    public void addLife()
+    {
+        if (lives < maxLives)
+        {
+            lives++;
+            updateHealthBar();
+        }
+    }
+
+    private void updateHealthBar()
+    {
+        for (int i=0; i<healthBar.childCount; i++)
+        {
+            if (i<lives)
+            {
+                healthBar.GetChild(i).gameObject.GetComponent<RawImage>().enabled = true;
+            }
+            else
+            {
+                healthBar.GetChild(i).gameObject.GetComponent<RawImage>().enabled = false;
+            }
+        }
+    }
+
 }
