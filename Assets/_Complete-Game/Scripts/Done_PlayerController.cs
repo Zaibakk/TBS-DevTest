@@ -109,4 +109,14 @@ public class Done_PlayerController : MonoBehaviour
         }
     }
 
+    public void ActivateShield()
+    {
+        transform.GetChild(2).gameObject.GetComponent<Done_Shield>().Activate();
+    }
+
+    public void ActivateMissile()
+    {
+
+    }
+
 }

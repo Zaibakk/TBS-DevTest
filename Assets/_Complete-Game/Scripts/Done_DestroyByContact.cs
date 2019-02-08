@@ -32,9 +32,9 @@ public class Done_DestroyByContact : MonoBehaviour
 		{
 			return;
 		}
-        if (other.tag != "Player")
+        if (other.tag != "Player" && other.tag != "Shield")
             Destroy(other.gameObject);
-        else
+        if (other.tag == "Player")
         {
             other.gameObject.GetComponent<Done_PlayerController>().LoseLife();
         }
