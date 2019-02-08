@@ -45,7 +45,7 @@ public class Done_GameController : MonoBehaviour
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
-        while (true)
+        while (true) //who has done this? while true + break it's the ugliest possible choice in a program :D
         {
             for (int i = 0; i < hazardCount; i++)
             {

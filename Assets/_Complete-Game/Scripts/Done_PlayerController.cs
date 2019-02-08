@@ -73,10 +73,10 @@ public class Done_PlayerController : MonoBehaviour
 		GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 	}
 
-    public void loseLife()
+    public void LoseLife()
     {
         lives--;
-        updateHealthBar();
+        UpdateHealthBar();
         if (lives<=0)
         {
             Instantiate(playerExplosion, transform.position, transform.rotation);
@@ -85,16 +85,16 @@ public class Done_PlayerController : MonoBehaviour
         }
     }
 
-    public void addLife()
+    public void AddLife()
     {
         if (lives < maxLives)
         {
             lives++;
-            updateHealthBar();
+            UpdateHealthBar();
         }
     }
 
-    private void updateHealthBar()
+    private void UpdateHealthBar()
     {
         for (int i=0; i<healthBar.childCount; i++)
         {
