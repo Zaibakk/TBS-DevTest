@@ -116,7 +116,7 @@ public class Done_PlayerController : MonoBehaviour
 
     public void ActivateMissile()
     {
-
+        GetComponent<Done_MissileLauncher>().Activate();
     }
 
 }
