@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this class handle the powerups object in the game
 public class Done_Powerup : MonoBehaviour
 {
-    public bool health;
-    public bool shield;
-    public bool missile;
+    public bool health; //true if it has the health power
+    public bool shield; //true if it has the shield power
+    public bool missile; //true if it has the missile power
 
     void OnTriggerEnter(Collider other)
     {

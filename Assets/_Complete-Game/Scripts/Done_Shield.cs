@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this class handle the shield power
 public class Done_Shield : MonoBehaviour
 {
-    private bool active;
+    private bool active; //true when the shield power is active
 
     void Start()
     {

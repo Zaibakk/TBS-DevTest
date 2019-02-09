@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This class handle the missile behaviour
 public class Done_Missile : MonoBehaviour
 {
-    public float speed;
-    public float force;
-    public float maxSpeed;
+    public float speed; //the starting speed of the missile
+    public float force; //the force applied to direct the missile into the locked enemy
+    //public float maxSpeed;
 
-    private Transform locked;
+    private Transform locked; //the enemy locked: aka the nearest enemy
 
     void Start()
     {
+        //spawn the missile and apply to it the starting speed
         transform.Rotate(Vector3.right*90.0f);
         TargetEnemy();
         GetComponent<Rigidbody>().velocity = transform.up * speed;
@@ -19,9 +21,11 @@ public class Done_Missile : MonoBehaviour
 
     void FixedUpdate()
     {
+        //target the nearest enemy
         TargetEnemy();
     }
 
+    //lock the nearest enemy and apply a force into his direction
     private void TargetEnemy()
     {
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -47,7 +51,7 @@ public class Done_Missile : MonoBehaviour
             RotateMissile(closestEnemy);
         }
     }
-
+    //this method select the closest enemy
     private Transform GetClosestEnemy(Transform[] enemies)
     {
         Transform bestTarget = null;
@@ -65,7 +69,7 @@ public class Done_Missile : MonoBehaviour
         }
         return bestTarget;
     }
-
+    //this method apply a force into locked enemy to the missile, and rotate the missile into it
     private void RotateMissile (Transform target)
     {
         Vector3 heading = target.position - transform.position;

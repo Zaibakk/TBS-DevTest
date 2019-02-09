@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this class handle the missile launcher of the player
+//it is activated when the missile power up is taken
 public class Done_MissileLauncher : MonoBehaviour
 {
-    public float duration;
-    public float fireRate;
+    public float duration; //the duration of the power
+    public float fireRate; //the fire rate at which missiles are shot
     public GameObject missile;
     public Transform shotSpawn;
 
-    private bool active;
-    private float timeActive;
+    private bool active; //if the power is active
+    private float timeActive; //time left until the power expires
     private float nextFire;
 
     void Start()

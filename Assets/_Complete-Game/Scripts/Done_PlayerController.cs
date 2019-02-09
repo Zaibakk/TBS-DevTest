@@ -73,6 +73,7 @@ public class Done_PlayerController : MonoBehaviour
 		GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 	}
 
+    //this method take away a life from the player, and eventually kill him if he reaches 0 lives
     public void LoseLife()
     {
         lives--;
@@ -85,6 +86,7 @@ public class Done_PlayerController : MonoBehaviour
         }
     }
 
+    //this method add a life to the player, without exceeding the starting limit
     public void AddLife()
     {
         if (lives < maxLives)
@@ -94,6 +96,7 @@ public class Done_PlayerController : MonoBehaviour
         }
     }
 
+    //this method update the health bar in the UI
     private void UpdateHealthBar()
     {
         for (int i=0; i<healthBar.childCount; i++)
@@ -109,11 +112,13 @@ public class Done_PlayerController : MonoBehaviour
         }
     }
 
+    //this method activate the shield when the shield powerup is taken
     public void ActivateShield()
     {
         transform.GetChild(2).gameObject.GetComponent<Done_Shield>().Activate();
     }
 
+    //this method activate the missile launcher when the missile powerup is taken
     public void ActivateMissile()
     {
         GetComponent<Done_MissileLauncher>().Activate();

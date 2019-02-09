@@ -5,8 +5,8 @@ public class Done_DestroyByContact : MonoBehaviour
 {
 	public GameObject explosion;
 	public int scoreValue;
-    public bool doubleLife;
-    public bool isShip;
+    public bool doubleLife; //true if it has 2 lives, like superships
+    public bool isShip; //true if it is a ship
 	private Done_GameController gameController;
     private Color original;
 
@@ -56,6 +56,7 @@ public class Done_DestroyByContact : MonoBehaviour
         }
 	}
     
+    //this method set the colour of a super ship to red
     void SetRed()
     {
         Renderer rend = gameObject.transform.GetChild(2).GetComponent<Renderer>();
@@ -63,6 +64,7 @@ public class Done_DestroyByContact : MonoBehaviour
         rend.material.SetColor("_Color", new Color(1.0f,0.0f,0.0f));
     }
 
+    //this method set the colours of a ship back to his standard coloration
     void SetStandard()
     {
         Renderer rend = gameObject.transform.GetChild(2).GetComponent<Renderer>();
