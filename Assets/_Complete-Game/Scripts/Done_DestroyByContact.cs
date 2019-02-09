@@ -7,6 +7,7 @@ public class Done_DestroyByContact : MonoBehaviour
 	public int scoreValue;
     public bool doubleLife; //true if it has 2 lives, like superships
     public bool isShip; //true if it is a ship
+    public bool isKamikaze; //true if it is a kamikaze
 	private Done_GameController gameController;
     private Color original;
 
@@ -22,8 +23,8 @@ public class Done_DestroyByContact : MonoBehaviour
 		{
 			Debug.Log ("Cannot find 'GameController' script");
 		}
-        if (doubleLife)
-            SetRed();
+        if (doubleLife || isKamikaze)
+            SetColor();
     }
 
 	void OnTriggerEnter (Collider other)
@@ -56,12 +57,15 @@ public class Done_DestroyByContact : MonoBehaviour
         }
 	}
     
-    //this method set the colour of a super ship to red
-    void SetRed()
+    //this method set the colour of a super ship or a kamikaze ship
+    void SetColor()
     {
         Renderer rend = gameObject.transform.GetChild(2).GetComponent<Renderer>();
         original = rend.material.GetColor("_Color");
-        rend.material.SetColor("_Color", new Color(1.0f,0.0f,0.0f));
+        if (doubleLife)
+            rend.material.SetColor("_Color", new Color(1.0f,0.0f,0.0f));
+        if (isKamikaze)
+            rend.material.SetColor("_Color", new Color(0.0f, 1.0f, 0.0f));
     }
 
     //this method set the colours of a ship back to his standard coloration
